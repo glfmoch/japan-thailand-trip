@@ -1,0 +1,16 @@
+spend_id,date,city,country,category,description,amount_local,currency,amount_usd
+1,2025-09-01,Tokyo,Japan,Food,Ramen at Ichiran,1200,JPY,8.20
+2,2025-09-01,Tokyo,Japan,Transport,IC Card top-up,2000,JPY,13.70
+3,2025-09-01,Tokyo,Japan,Activities,TeamLab Planets ticket,3200,JPY,21.90
+4,2025-09-02,Tokyo,Japan,Accommodation,Capsule hotel,4500,JPY,30.80
+5,2025-09-02,Tokyo,Japan,Food,Sushi at Tsukiji,2800,JPY,19.20
+6,2025-09-03,Kyoto,Japan,Food,Matcha dessert,800,JPY,5.50
+7,2025-09-03,Kyoto,Japan,Transport,Shinkansen Tokyo-Kyoto,13850,JPY,94.90
+8,2025-09-05,Osaka,Japan,Food,Takoyaki street food,600,JPY,4.10
+9,2025-09-05,Osaka,Japan,Shopping,Souvenirs,3500,JPY,24.00
+10,2025-09-08,Bangkok,Thailand,Accommodation,Hostel dorm,450,THB,12.50
+11,2025-09-08,Bangkok,Thailand,Food,Pad Thai from street vendor,80,THB,2.20
+12,2025-09-08,Bangkok,Thailand,Activities,Tuk-tuk tour,300,THB,8.40
+13,2025-09-09,Bangkok,Thailand,Food,Mango sticky rice,60,THB,1.70
+14,2025-09-10,Chiang Mai,Thailand,Accommodation,Guesthouse,550,THB,15.30
+15,2025-09-10,Chiang Mai,Thailand,Activities,Elephant sanctuary,2500,THB,69.50

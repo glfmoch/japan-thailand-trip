@@ -1,0 +1,25 @@
+# Personal data — never commit raw or processed exports
+data/raw/
+data/processed/
+
+# Environment
+.env
+.env.*
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
