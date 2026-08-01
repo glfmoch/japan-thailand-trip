@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-08-01T06:19:38.643074+00:00",
+  "spending_rows": 153,
+  "date_range": [
+    "2026-06-23",
+    "2026-07-19"
+  ],
+  "usd_total": 3299.5,
+  "usd_by_country": {
+    "Japan": 1790.7,
+    "Taiwan": 57.81,
+    "Thailand": 1450.99
+  },
+  "photos_geotagged": 327,
+  "photos_by_country": {
+    "Japan": 169,
+    "Thailand": 154,
+    "Taiwan": 4
+  },
+  "photos_matched": 97,
+  "route_points": {
+    "Japan": 37,
+    "Thailand": 1057,
+    "Taiwan": 7
+  }
+}

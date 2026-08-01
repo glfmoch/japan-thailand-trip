@@ -1,4 +1,8 @@
-pandas
-sqlalchemy
-psycopg2-binary
 streamlit
+folium
+streamlit-folium
+plotly
+pandas
+pillow
+pillow-heif
+anthropic

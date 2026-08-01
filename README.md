@@ -1,156 +1,164 @@
-# Japan & Thailand Trip — Personal Data Analysis
+# Japan & Thailand Trip — A Personal-Data Analysis
 
-An end-to-end personal data pipeline built around a trip to Japan and Thailand.
-Raw location history and spending logs are parsed with Python/pandas, stored in
-PostgreSQL, and explored through a deployed Streamlit dashboard with an
-interactive map.
+**Turning three messy real-world data sources — a Google Maps location history,
+a hand-scribbled spending log, and 300+ phone photos — into a clean, reproducible
+analysis and an interactive dashboard.**
 
-> **Status:** Pre-trip scaffold. Data stubs and pipeline are in place; real
-> analysis fills in after the trip.
+> A summer portfolio project exploring what I can learn about my own trip when I
+> treat it like an analytics problem: collect, clean, model, visualize, and
+> surface insights. Built end-to-end in Python.
+
+![Streamlit](https://img.shields.io/badge/Streamlit-dashboard-ff4b4b)
+![Python](https://img.shields.io/badge/Python-pandas-3776ab)
+![Status](https://img.shields.io/badge/data-real%20trip-2dd4bf)
 
 ---
 
-## Stack
+## The question
 
-| Layer | Tool |
+*Where did my money and time actually go across 27 days in Japan and Thailand —
+and can I reconstruct the trip from the digital trail it left behind?*
+
+---
+
+## Key findings
+
+- **Getting there cost more than being there.** Two long-haul US↔Asia flights
+  plus the Japan→Thailand connector totalled **~$2,286** — roughly **2.3× the
+  ~$998 spent on the ground** across three weeks. The flights, not daily life,
+  were the trip's real expense (all-in cost **~$3,283**).
+- **On the ground, the two legs cost about the same per day** — **~$36/day in
+  Japan** vs **~$34/day in Thailand** — once airfare is separated out as a travel
+  cost. The dramatic gap in raw totals was almost entirely airfare.
+- **Food & Drink dominated** on-the-ground spending, the single largest category
+  by a wide margin — a day-to-day trip, not a big-ticket one.
+- **Souvenir shopping was almost entirely a Thailand thing** (crocodile leather
+  goods, COS, Muji), a small share of Japan spend but a large share of Thailand's.
+- **The Osaka Aquarium (Kaiyukan) was the single most-photographed place** —
+  81 photos taken within 350 m — a clear signal of where I spent the most time.
+- A **daily-consumption pattern**: dozens of convenience-store (*konbini*) runs
+  and a steady boba / matcha habit that the log makes impossible to hide.
+
+*(All figures are computed live in the dashboard from the parsed data — nothing
+is hard-coded.)*
+
+---
+
+## What it does
+
+An interactive **Streamlit** dashboard in four tabs:
+
+| Tab | What it shows |
 |---|---|
-| Parsing | Python 3.13, pandas |
-| Database | PostgreSQL + SQLAlchemy + psycopg2 |
-| Dashboard | Streamlit |
-| Version control | Git / GitHub |
+| 🗺️ **Map** | Every geotagged photo as a pin (Japan red, Thailand green), the Thailand GPS route, ⭐ landmarks sized by how many photos I took there, a photo-density heatmap, and a fullscreen view. |
+| 💴 **Spending** | Key findings, KPIs, and six charts — by country, over time, by category, top purchases, **Japan vs Thailand head-to-head**, and cumulative spend. |
+| 📸 **Caught Spending** | A gallery of photos each **matched to the exact purchase it captured**, with the price tagged on (a matcha-ice-cream photo → the matcha-ice-cream line item). |
+| 📋 **Summary** | Trip metrics + a "trip in numbers" strip + the full sortable spending table. |
+
+Responsive for desktop, tablet, and phone.
 
 ---
 
-## Data Sources
-
-### 1. Google Maps Timeline JSON
-Exported via Google Takeout → Location History.
-
-Two possible formats:
-- **Semantic Location History** (`YYYY/YYYY_MONTH.json`) — pre-parsed into
-  `placeVisit` and `activitySegment` records. Preferred format.
-- **Records.json** — raw GPS pings with timestamps. Fallback if semantic
-  history isn't available.
-
-Placed in `data/raw/` (gitignored — never committed).
-
-### 2. Manual Spending Log
-A CSV maintained during the trip tracking every expense:
-`date, city, country, category, description, amount_local, currency, amount_usd`.
-
-Categories: Food, Transport, Accommodation, Activities, Shopping.
-
-Placed in `data/raw/spending.csv` (gitignored).
-
-### 3. Photo EXIF (backup)
-iPhone photos embed GPS coordinates and timestamps. If Timeline export is
-sparse, EXIF data can fill gaps using the `exifread` or `Pillow` library.
-
----
-
-## PostgreSQL Schema
-
-```sql
--- Lookup table: one row per city visited
-CREATE TABLE cities (
-    city_id  SERIAL PRIMARY KEY,
-    city     TEXT NOT NULL,
-    country  TEXT NOT NULL,
-    region   TEXT,
-    UNIQUE (city, country)
-);
-
--- One row per named place visited (sourced from Timeline or manual entry)
-CREATE TABLE visits (
-    visit_id            SERIAL PRIMARY KEY,
-    city_id             INT REFERENCES cities(city_id),
-    location_name       TEXT,
-    latitude            DOUBLE PRECISION,
-    longitude           DOUBLE PRECISION,
-    arrival_datetime    TIMESTAMP WITH TIME ZONE,
-    departure_datetime  TIMESTAMP WITH TIME ZONE,
-    duration_hours      NUMERIC(6, 2),
-    source              TEXT DEFAULT 'timeline'
-);
-
--- One row per expense
-CREATE TABLE spending (
-    spend_id      SERIAL PRIMARY KEY,
-    city_id       INT REFERENCES cities(city_id),
-    spend_date    DATE NOT NULL,
-    category      TEXT,
-    description   TEXT,
-    amount_local  NUMERIC(10, 2),
-    currency      CHAR(3),
-    amount_usd    NUMERIC(10, 2)
-);
-```
-
----
-
-## Analysis Questions
-
-| Question | Approach |
-|---|---|
-| Which locations did I spend the most time at? | `GROUP BY location_name ORDER BY SUM(duration_hours) DESC` |
-| How did I move between cities day by day? | Timeline view joining visits ordered by `arrival_datetime` |
-| What was my daily spend in USD? | `GROUP BY spend_date ORDER BY spend_date` |
-| How does Japan spending compare to Thailand by category? | `GROUP BY country, category` pivot |
-| What was the most expensive single day, and why? | `ORDER BY SUM(amount_usd) DESC LIMIT 1` |
-| What transport modes did I use most? | Parse `activitySegment.activityType` from Timeline JSON |
-
----
-
-## Project Structure
+## Analytical process
 
 ```
-.
-├── data/
-│   ├── raw/          # Real exports — gitignored, never committed
-│   ├── processed/    # Cleaned CSVs — gitignored
-│   └── sample/       # Fake sample data — committed for demonstration
-├── scripts/
-│   ├── parse_timeline.py   # Timeline JSON → DataFrame
-│   └── load_to_postgres.py # DataFrame → PostgreSQL
-├── app/
-│   └── streamlit_app.py    # Dashboard
-├── requirements.txt
-└── README.md
+data/raw/  ──►  build_dataset.py  ──►  data/processed/  ──►  app.py
+ (private)        pipeline/*.py         (committed)          (dashboard)
+   collect          clean + model         analyze              visualize
 ```
+
+1. **Collect** — Google Takeout Timeline JSON, a `.docx` spending log, an
+   iPhone photo export.
+2. **Clean (the hard part)** — the spending log is genuinely messy: four
+   currencies (¥/$/฿/NTD), inconsistent date headers (`June 25th`, `July 1st`),
+   lines with no currency marker, multi-line entries, and an ATM withdrawal
+   whose *fee* is the real cost. `pipeline/spending.py` normalizes all of it and
+   infers a category per line. Known data-entry errors (a mistyped amount, a
+   bundled two-item line) are handled through a **documented corrections layer**
+   and a line-splitter — the raw file stays immutable and every adjustment is
+   auditable.
+3. **Model** — everything is converted to a common schema and a common currency
+   (USD, at fixed trip rates), photos are reverse-geocoded to a country by
+   bounding box, and Timeline segments are flattened into an ordered route.
+4. **Enrich** — standout photos are matched to the exact purchase they show
+   (a curated, documented set in `data/matches.csv`; an automated **Claude
+   vision** pipeline in `pipeline/vision.py` can scale it to every photo).
+5. **Analyze & visualize** — findings and charts are computed with pandas and
+   rendered with Plotly + Folium.
+
+> **Full architecture:** see [`ARCHITECTURE.md`](ARCHITECTURE.md) for the
+> build-vs-serve split, the module breakdown, and the data-flow diagram.
 
 ---
 
-## Setup
+## Skills demonstrated
+
+- **Data cleaning / wrangling** of unstructured, real-world text (multi-currency,
+  free-form, inconsistent) — the messiest and most representative part of analyst
+  work.
+- **ETL pipeline design** — a modular, re-runnable `pipeline/` package with a
+  single orchestrator, separating raw sources from committed, deploy-safe outputs.
+- **Geospatial analysis** — EXIF GPS extraction, bounding-box classification,
+  route reconstruction, proximity validation of landmarks (haversine).
+- **LLM-assisted enrichment** with structured outputs (image → structured match).
+- **Dashboarding & data storytelling** — a responsive, insight-first UI.
+- **Reproducibility & data hygiene** — deterministic build, personal raw data
+  kept out of version control.
+
+---
+
+## Tech stack
+
+Python · pandas · Pillow + pillow-heif (HEIC EXIF) · Folium + streamlit-folium ·
+Plotly · Streamlit · Anthropic Claude (vision).
+
+---
+
+## Run it locally
 
 ```bash
-# 1. Create and activate virtual environment
 python -m venv venv
-venv\Scripts\activate        # Windows
-# source venv/bin/activate   # macOS/Linux
-
-# 2. Install dependencies
+venv\Scripts\activate           # Windows  (source venv/bin/activate on macOS/Linux)
 pip install -r requirements.txt
+streamlit run app.py            # uses the committed data/processed/ dataset
+```
 
-# 3. Set up PostgreSQL connection (when ready)
-#    Create a .env file (gitignored):
-#    DATABASE_URL=postgresql://user:password@localhost:5432/japan_trip
+### Rebuild the dataset from raw sources
 
-# 4. Create database schema
-python scripts/load_to_postgres.py
+```bash
+python build_dataset.py               # parse + extract; vision runs if a key is set
+python build_dataset.py --no-vision   # skip the Claude vision matching
+python build_dataset.py --vision-only # re-run only the photo → purchase matching
+```
 
-# 5. Run the dashboard
-streamlit run app/streamlit_app.py
+The vision step needs an Anthropic API key:
+
+```powershell
+$env:ANTHROPIC_API_KEY = "sk-ant-..."
+python build_dataset.py --vision-only
 ```
 
 ---
 
 ## Deployment
 
-The Streamlit app is designed for **Streamlit Community Cloud**:
-1. Push this repo to GitHub.
-2. Connect at [share.streamlit.io](https://share.streamlit.io).
-3. Set `DATABASE_URL` as a secret in the Streamlit Cloud dashboard.
+Designed for **Streamlit Community Cloud** — connect the repo at
+[share.streamlit.io](https://share.streamlit.io) with main file `app.py`. No
+secrets or API calls are needed at runtime; the app reads the committed
+`data/processed/` dataset.
 
 ---
 
-*Built by Ryan Mathew — Data Visualization, University of Washington Bothell*
+## Data & privacy
+
+Raw location history, the raw spending document, and full-resolution photos are
+**never committed** (`data/raw/` is gitignored). What ships publicly is the
+derived, deploy-safe dataset: 300 px thumbnails, the parsed spending table, the
+movement route, and the validated landmark list — plus a larger (1100 px)
+click-to-enlarge image for each of the ~97 purchase-matched gallery photos,
+served as static files.
+
+---
+
+*Built by **Ryan Mathew** — Data Visualization, University of Washington Bothell.
+Aspiring data analyst. [Add your LinkedIn here].*

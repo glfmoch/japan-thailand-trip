@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Osaka Aquarium Kaiyukan",
+    "lat": 34.6545,
+    "lon": 135.4288,
+    "country": "Japan",
+    "kind": "aquarium",
+    "nearest_km": 0.013,
+    "photos_nearby": 81
+  },
+  {
+    "name": "Osaka Castle",
+    "lat": 34.6873,
+    "lon": 135.5259,
+    "country": "Japan",
+    "kind": "castle",
+    "nearest_km": 0.003,
+    "photos_nearby": 21
+  },
+  {
+    "name": "Siam Paragon",
+    "lat": 13.7462,
+    "lon": 100.5347,
+    "country": "Thailand",
+    "kind": "shopping",
+    "nearest_km": 0.012,
+    "photos_nearby": 8
+  },
+  {
+    "name": "Chatuchak Weekend Market",
+    "lat": 13.7999,
+    "lon": 100.5502,
+    "country": "Thailand",
+    "kind": "market",
+    "nearest_km": 0.066,
+    "photos_nearby": 5
+  },
+  {
+    "name": "Dotonbori",
+    "lat": 34.6686,
+    "lon": 135.503,
+    "country": "Japan",
+    "kind": "food",
+    "nearest_km": 0.154,
+    "photos_nearby": 4
+  },
+  {
+    "name": "Shinsaibashi",
+    "lat": 34.6723,
+    "lon": 135.501,
+    "country": "Japan",
+    "kind": "shopping",
+    "nearest_km": 0.049,
+    "photos_nearby": 4
+  },
+  {
+    "name": "Terminal 21 Asok",
+    "lat": 13.7376,
+    "lon": 100.5601,
+    "country": "Thailand",
+    "kind": "shopping",
+    "nearest_km": 0.01,
+    "photos_nearby": 3
+  },
+  {
+    "name": "Universal Studios Japan",
+    "lat": 34.6656,
+    "lon": 135.4323,
+    "country": "Japan",
+    "kind": "park",
+    "nearest_km": 0.325,
+    "photos_nearby": 2
+  },
+  {
+    "name": "CentralWorld",
+    "lat": 13.7466,
+    "lon": 100.5396,
+    "country": "Thailand",
+    "kind": "shopping",
+    "nearest_km": 0.049,
+    "photos_nearby": 2
+  },
+  {
+    "name": "Tsutenkaku / Shinsekai",
+    "lat": 34.6524,
+    "lon": 135.5063,
+    "country": "Japan",
+    "kind": "landmark",
+    "nearest_km": 1.758,
+    "photos_nearby": 0
+  },
+  {
+    "name": "EmSphere",
+    "lat": 13.7297,
+    "lon": 100.5697,
+    "country": "Thailand",
+    "kind": "shopping",
+    "nearest_km": 0.101,
+    "photos_nearby": 0
+  },
+  {
+    "name": "Pattaya Floating Market",
+    "lat": 12.8892,
+    "lon": 100.9007,
+    "country": "Thailand",
+    "kind": "market",
+    "nearest_km": 0.361,
+    "photos_nearby": 0
+  },
+  {
+    "name": "Pattaya Beach",
+    "lat": 12.927,
+    "lon": 100.8776,
+    "country": "Thailand",
+    "kind": "beach",
+    "nearest_km": 0.666,
+    "photos_nearby": 0
+  }
+]

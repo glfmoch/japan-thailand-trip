@@ -1,0 +1,154 @@
+spend_id,date,country,category,description,amount_original,currency,amount_usd
+1,2026-06-23,Japan,Transit,Suica card deposit,2000.0,JPY,12.9
+2,2026-06-24,Japan,Food & Drink,Lunch/Breakfast Udon curry bowl,900.0,JPY,5.81
+3,2026-06-24,Japan,Convenience Store,7-Eleven ATM fee,110.0,JPY,0.71
+4,2026-06-24,Japan,Food & Drink,"Cherry Redbull, Grape Gummys, Umbrella Don Quijote 1-24, Uenomiyacho Tennoji-Ku, Osaka, Osaka Japan 543-0037",3661.0,JPY,23.62
+5,2026-06-24,Japan,Convenience Store,Family Mart Orange Juice Familymart Kintetsu Ōsaka-Uehommachi Station Shop ファミリーマート 近鉄大阪上本町駅店,340.0,JPY,2.19
+6,2026-06-24,Japan,Convenience Store,yen vending machine yuzu lemon juice,100.0,JPY,0.65
+7,2026-06-24,Japan,Food & Drink,Gyoza + some small samples Number 6,730.0,JPY,4.71
+8,2026-06-24,Japan,Activities & Entertainment,Universal Studios Day Pass,8900.0,JPY,57.42
+9,2026-06-24,Japan,Transit,Suica card refill,1000.0,JPY,6.45
+10,2026-06-24,Japan,Convenience Store,Lawson onigiri and dango,529.0,JPY,3.41
+11,2026-06-25,Japan,Activities & Entertainment,Nintendo Land Green Shell Calzone,1100.0,JPY,7.1
+12,2026-06-25,Japan,Food & Drink,Isekai Food,1159.0,JPY,7.48
+13,2026-06-25,Japan,Convenience Store,7/11 Yakisoba Egg and Coffee Jelly,710.0,JPY,4.58
+14,2026-06-26,Japan,Transit,Suica card refill,2000.0,JPY,12.9
+15,2026-06-26,Japan,Food & Drink,Sushi,1815.0,JPY,11.71
+16,2026-06-26,Japan,Convenience Store,Lawson Noodles + more,1058.0,JPY,6.83
+17,2026-06-27,Japan,Food & Drink,Lunch beef rice w miso soup and egg,790.0,JPY,5.1
+18,2026-06-27,Japan,Food & Drink,Dinner ramen and meat sticks,1000.0,JPY,6.45
+19,2026-06-27,Japan,Convenience Store,Lawson run with onigiris,1224.0,JPY,7.9
+20,2026-06-28,Japan,Food & Drink,Pasta at Cafe,690.0,JPY,4.45
+21,2026-06-28,Japan,Activities & Entertainment,Osaka Castle Ticket,1200.0,JPY,7.74
+22,2026-06-28,Japan,Activities & Entertainment,Osaka Castle fridge magnet souvenir,350.0,JPY,2.26
+23,2026-06-28,Japan,Convenience Store,lemon drink from 7/11,175.0,JPY,1.13
+24,2026-06-28,Japan,Food & Drink,Curry Chicken Sandwich,850.0,JPY,5.48
+25,2026-06-28,Japan,Food & Drink,Nagasaki Style Noodles,870.0,JPY,5.61
+26,2026-06-28,Japan,Shopping,Chocolates to bring back to US,861.0,JPY,5.55
+27,2026-06-28,Japan,Convenience Store,Lawson debloat health drink combo,675.0,JPY,4.35
+28,2026-06-29,Japan,Food & Drink,Korean Spicy Ramen Lunch,900.0,JPY,5.81
+29,2026-06-29,Japan,Convenience Store,Lawson Moomin White Soda,238.0,JPY,1.54
+30,2026-06-29,Japan,Activities & Entertainment,Aquarium Ticket,2800.0,JPY,18.06
+31,2026-06-29,Japan,Activities & Entertainment,Aquarium fridge magnet,473.0,JPY,3.05
+32,2026-06-29,Japan,Food & Drink,Mr. Donut strawberry mochi donuts,183.0,JPY,1.18
+33,2026-06-29,Japan,Health & Misc,Matcha ice cream,400.0,JPY,2.58
+34,2026-06-29,Japan,Flights,Thailand flight booking (other flight was cancelled and refunded),246.0,USD,246.0
+35,2026-06-29,Japan,Food & Drink,Sushi,721.0,JPY,4.65
+36,2026-06-29,Japan,Health & Misc,Meat skewer and carmel ice cream,780.0,JPY,5.03
+37,2026-06-29,Japan,Convenience Store,Lawson Onigiri & Matcha Scones,427.0,JPY,2.75
+38,2026-06-30,Japan,Transit,Suica refill,1000.0,JPY,6.45
+39,2026-06-30,Japan,Convenience Store,Family Mart onigiri and chocolate bread,368.0,JPY,2.37
+40,2026-06-30,Japan,Food & Drink,Gyoza and DanDan noodles dinner,1360.0,JPY,8.77
+41,2026-07-01,Japan,Health & Misc,Matcha shaved ice cream bowl,1000.0,JPY,6.45
+42,2026-07-01,Japan,Transit,Train to airport fare ticket,1060.0,JPY,6.84
+43,2026-07-01,Japan,Food & Drink,Airport 3 total Royce chocolates with ice pack bag,2870.0,JPY,18.52
+44,2026-07-01,Japan,Food & Drink,Airport Sandwich,700.0,JPY,4.52
+45,2026-07-02,Thailand,Health & Misc,10 day unlimited eSIM,4.72,USD,4.72
+46,2026-07-02,Thailand,Convenience Store,7/11 chlorophyll drink and bottled water,70.0,THB,2.0
+47,2026-07-02,Thailand,Food & Drink,Green curry omelette rice Lunch,59.0,THB,1.69
+48,2026-07-02,Thailand,Food & Drink,passion fruit ice smoothie,25.0,THB,0.71
+49,2026-07-02,Thailand,Transit,train,28.0,THB,0.8
+50,2026-07-02,Thailand,Food & Drink,nice Thai dinner,299.0,THB,8.54
+51,2026-07-02,Thailand,Transit,train,64.0,THB,1.83
+52,2026-07-02,Thailand,Health & Misc,Eczema cream,123.0,THB,3.51
+53,2026-07-02,Thailand,Food & Drink,Red Bull,14.0,THB,0.4
+54,2026-07-03,Thailand,Transit,Transportation to Pattaya,267.0,THB,7.63
+55,2026-07-03,Thailand,Food & Drink,Pad Thai,60.0,THB,1.71
+56,2026-07-03,Thailand,Health & Misc,water and chlorophyll drink,40.0,THB,1.14
+57,2026-07-03,Thailand,Food & Drink,seafood dinner,400.0,THB,11.43
+58,2026-07-03,Thailand,Health & Misc,"2 health drinks, ice cream and cake",163.0,THB,4.66
+59,2026-07-04,Thailand,Health & Misc,Hershey almond matcha ice cream,45.0,THB,1.29
+60,2026-07-04,Thailand,Food & Drink,Coconut Matcha,150.0,THB,4.29
+61,2026-07-04,Thailand,Activities & Entertainment,floating market entry fee,200.0,THB,5.71
+62,2026-07-04,Thailand,Food & Drink,Mango Toffee floating market,50.0,THB,1.43
+63,2026-07-05,Thailand,Food & Drink,Everything Bagel,325.0,THB,9.29
+64,2026-07-05,Thailand,Transit,Van ride back from Pattaya to BK,282.0,THB,8.06
+65,2026-07-05,Thailand,Food & Drink,McDonald’s Dinner,327.0,THB,9.34
+66,2026-07-06,Thailand,Food & Drink,chicken rice brunch,60.0,THB,1.71
+67,2026-07-06,Thailand,Convenience Store,7/11 snacks and drinks,133.0,THB,3.8
+68,2026-07-06,Thailand,Food & Drink,Isekaiya food and drink,206.0,THB,5.89
+69,2026-07-06,Thailand,Convenience Store,7/11 run,45.0,THB,1.29
+70,2026-07-07,Thailand,Transit,train to central,19.0,THB,0.54
+71,2026-07-07,Thailand,Food & Drink,shrimp egg rice dish,109.0,THB,3.11
+72,2026-07-07,Thailand,Food & Drink,Matcha boba drink,115.0,THB,3.29
+73,2026-07-07,Thailand,Health & Misc,cookies and cream krispy kream donut,35.0,THB,1.0
+74,2026-07-07,Thailand,Food & Drink,Auntie Anne’s chicken dog,99.0,THB,2.83
+75,2026-07-07,Thailand,Transit,train back from central,19.0,THB,0.54
+76,2026-07-08,Thailand,Health & Misc,communal mangosteen fund donation,70.0,THB,2.0
+77,2026-07-08,Thailand,Transit,bus to mall,8.0,THB,0.23
+78,2026-07-08,Thailand,Food & Drink,Gong Cha Taro Boba,110.0,THB,3.14
+79,2026-07-08,Thailand,Food & Drink,Wingstop boneless 6 piece,198.0,THB,5.66
+80,2026-07-08,Thailand,Food & Drink,Gourmet Market smoothie and kombucha,169.0,THB,4.83
+81,2026-07-08,Thailand,Food & Drink,Swensen’s Pandan Dessert Boat,189.0,THB,5.4
+82,2026-07-09,Thailand,Transit,transit to terminal 21 mall,64.0,THB,1.83
+83,2026-07-09,Thailand,Food & Drink,GA/GA Ube cloud milk tea w boba,135.0,THB,3.86
+84,2026-07-09,Thailand,Transit,transit to another mall,32.0,THB,0.91
+85,2026-07-09,Thailand,Shopping,Hama-Sushi conveyor belt sushi place,180.0,THB,5.14
+86,2026-07-09,Thailand,Transit,transportation back home,65.0,THB,1.86
+87,2026-07-09,Thailand,Food & Drink,Bonchan beef bulgogi rice dinner,234.0,THB,6.69
+88,2026-07-09,Thailand,Health & Misc,McDonalds ice creams,38.0,THB,1.09
+89,2026-07-09,Thailand,Health & Misc,gum and chlorophyll drink,84.0,THB,2.4
+90,2026-07-10,Thailand,Food & Drink,8-Ramen Chicken Pork Karamen,108.0,THB,3.09
+91,2026-07-10,Thailand,Food & Drink,GA/GA ube Mont Blanc coconut frappe with boba,155.0,THB,4.43
+92,2026-07-10,Thailand,Food & Drink,crab fried riceg,100.0,THB,2.86
+93,2026-07-10,Thailand,Food & Drink,melon meji yogurt,13.0,THB,0.37
+94,2026-07-10,Thailand,Food & Drink,McDonald’s burger nuggets & sundae,183.0,THB,5.23
+95,2026-07-11,Thailand,Shopping,fruit gift,260.0,THB,7.43
+96,2026-07-12,Thailand,Transit,train to central mall,19.0,THB,0.54
+97,2026-07-12,Thailand,Health & Misc,7-Day Thailand eSIM,3.97,USD,3.97
+98,2026-07-12,Thailand,Food & Drink,stir fry noodles with chicken,70.0,THB,2.0
+99,2026-07-12,Thailand,Food & Drink,GA/GA Ube Matcha Cloud,155.0,THB,4.43
+100,2026-07-12,Thailand,Convenience Store,7/11 Singha ume lemon soda,17.0,THB,0.49
+101,2026-07-12,Thailand,Shopping,Crocodile Leather wallet (hopefully real),1300.0,THB,37.14
+102,2026-07-12,Thailand,Transit,train back home,22.0,THB,0.63
+103,2026-07-12,Thailand,Food & Drink,noodle dinner,109.0,THB,3.11
+104,2026-07-13,Thailand,Health & Misc,pedicure just toes tho :(,350.0,THB,10.0
+105,2026-07-13,Thailand,Health & Misc,McDonalds chocolate dipped ice cream,19.0,THB,0.54
+106,2026-07-13,Thailand,Food & Drink,McDonalds spicy chicken and rice,59.0,THB,1.69
+107,2026-07-13,Thailand,Food & Drink,GA/GA Overload drink,100.0,THB,2.86
+108,2026-07-14,Thailand,Transit,train to Siam for malls,65.0,THB,1.86
+109,2026-07-14,Thailand,Food & Drink,Kuanzhai Panda Chengdu noodles and chili wonton,228.0,THB,6.51
+110,2026-07-14,Thailand,Food & Drink,Boost Thrilling Blue banana Minion edition smoothie,140.0,THB,4.0
+111,2026-07-14,Thailand,Shopping,COS Linen button up,2990.0,THB,85.43
+112,2026-07-14,Thailand,Food & Drink,McDonalds dinner,124.0,THB,3.54
+113,2026-07-14,Thailand,Activities & Entertainment,minions movie ticket,270.0,THB,7.71
+114,2026-07-14,Thailand,Activities & Entertainment,7up for minions movie,40.0,THB,1.14
+115,2026-07-14,Thailand,Food & Drink,truffle popcorn,190.0,THB,5.43
+116,2026-07-15,Thailand,Health & Misc,Haircut,250.0,THB,7.14
+117,2026-07-15,Thailand,Food & Drink,chicken noodle soup,119.0,THB,3.4
+118,2026-07-15,Thailand,Food & Drink,brown sugar Thai tea boba,39.0,THB,1.11
+119,2026-07-15,Thailand,Food & Drink,Bonchon cheese chicken rice dish,179.0,THB,5.11
+120,2026-07-16,Thailand,Food & Drink,Eat Am Are Good Steak lemongrass chicken dish,129.0,THB,3.69
+121,2026-07-16,Thailand,Activities & Entertainment,Yoguruto Passionfruit,69.0,THB,1.97
+122,2026-07-16,Thailand,Convenience Store,7/11 Spicy Salmon Onigiri,30.0,THB,0.86
+123,2026-07-16,Thailand,Transit,bus to Psound’s house,15.0,THB,0.43
+124,2026-07-17,Thailand,Health & Misc,Lotus’s 6 pack toilet paper,109.0,THB,3.11
+125,2026-07-17,Thailand,Transit,train back home from central,19.0,THB,0.54
+126,2026-07-17,Thailand,Shopping,Custom crocodile belt & card holder,2800.0,THB,80.0
+127,2026-07-17,Thailand,Food & Drink,Yakiniku Like Beef meal set + random coke that no one ordered but was in our order that I ended up drinking,268.0,THB,7.66
+128,2026-07-17,Thailand,Food & Drink,Boost all berry bang smoothie,105.0,THB,3.0
+129,2026-07-18,Thailand,Transit,Train to Central,17.0,THB,0.49
+130,2026-07-18,Thailand,Shopping,Muji Linen shirt for Veronic’s birthday gift,790.0,THB,22.57
+131,2026-07-18,Thailand,Transit,Train to Emsphere,65.0,THB,1.86
+132,2026-07-18,Thailand,Food & Drink,Shake Shack chicken shack burger (good but expensive for Thailand food),210.0,THB,6.0
+133,2026-07-18,Thailand,Food & Drink,"PangCha Royal Thai Tea w Boba (Tea was good, had an incense smoky taste. Total scam though 3/4 was just crushed ice and the price they had on the menu didn’t include tax)",176.0,THB,5.03
+134,2026-07-18,Thailand,Transit,train to weekend market,47.0,THB,1.34
+135,2026-07-18,Thailand,Shopping,Bangkok t-shirt from weekend market for brother,150.0,THB,4.29
+136,2026-07-18,Thailand,Shopping,weekend market leather cardholder for dad,150.0,THB,4.29
+137,2026-07-18,Thailand,Transit,train home,22.0,THB,0.63
+138,2026-07-18,Thailand,Food & Drink,GA/ GA Ube cloud milk tea with boba,135.0,THB,3.86
+139,2026-07-18,Thailand,Food & Drink,8-ramen torisoba,120.0,THB,3.43
+140,2026-07-18,Thailand,Food & Drink,McDonald’s cheese chicken burger,55.0,THB,1.57
+141,2026-07-19,Thailand,Food & Drink,airport water,60.0,THB,1.71
+142,2026-07-19,Taiwan,Food & Drink,Taiwan airport Pineapple cakes,1065.0,NTD,33.28
+143,2026-07-19,Taiwan,Convenience Store,vending machine Hey Song sasparilla,25.0,NTD,0.78
+144,2026-07-19,Taiwan,Food & Drink,2 dried dragon fruit and 2 Saint Peter brown sugar green tea biscuits,760.0,NTD,23.75
+145,2026-06-23,Japan,Flights,"International flight, US → Japan",1215.0,USD,1215.0
+146,2026-07-19,Thailand,Flights,"International flight, Thailand → US",824.74,USD,824.74
+147,2026-07-08,Thailand,Accommodation,Airbnb — my share of the week (split with friends),76.0,USD,76.0
+148,2026-06-28,Japan,Convenience Store,Lawson Special Parfait (chocolate-vanilla) and snacks,1029.0,JPY,6.64
+149,2026-07-05,Thailand,Food & Drink,Coconut water and lychee soda from Lotus's,50.0,THB,1.43
+150,2026-07-12,Thailand,Food & Drink,Dairy Queen chocolate ice cream,55.0,THB,1.57
+151,2026-07-12,Thailand,Food & Drink,Meiji strawberry yogurt drink,13.0,THB,0.37
+152,2026-07-15,Thailand,Food & Drink,Boost Mango Magic smoothie,110.0,THB,3.14
+153,2026-07-15,Thailand,Convenience Store,Drinks and snacks from 7-Eleven,105.0,THB,3.0

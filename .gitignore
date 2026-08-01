@@ -1,6 +1,5 @@
-# Personal data — never commit raw or processed exports
+# Raw personal data — NEVER commit (real photos, Timeline JSON, spending doc)
 data/raw/
-data/processed/
 
 # Environment
 .env
@@ -23,3 +22,13 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Local Claude Code config (dev-server launch settings)
+.claude/
+
+# NOTE: data/processed/ IS committed on purpose — it holds the derived,
+# deploy-safe dataset (300px thumbnails, parsed spending, movement route)
+# that the public Streamlit app reads. Raw sources stay in data/raw/ (ignored).

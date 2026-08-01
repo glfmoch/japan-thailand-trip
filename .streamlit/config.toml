@@ -1,0 +1,13 @@
+[theme]
+base = "dark"
+primaryColor = "#f4b942"
+backgroundColor = "#0d0f14"
+secondaryBackgroundColor = "#161a22"
+textColor = "#e7e9ee"
+font = "sans serif"
+
+[server]
+headless = true
+# Serve full-size gallery images from ./static/ at /app/static/... so the
+# lightbox loads them lazily on click (see pipeline/photos.write_full_images).
+enableStaticServing = true
