@@ -529,9 +529,10 @@ def _is_purchase(p: dict) -> bool:
     return bool(mid) and int(mid) in spend_by_id
 
 
-# Base styles for the in-map lightbox. Each photo's image is loaded via a
-# :target-gated background-image (see _map_lightbox) — a pure-CSS approach,
-# because st_folium injects the map via innerHTML, so <script> tags don't run.
+# Styles for the in-map lightbox. The image itself is set (lazily, on open) by
+# the _LightboxIntoMap script — not by CSS — because the correct URL depends on
+# the app's real base (Streamlit Cloud serves the component from a *different*
+# origin, so a bare `/app/static/...` path would resolve to the wrong host).
 _MAP_LB_CSS_HEAD = """<style>
 .mlb{position:fixed;inset:0;z-index:100000;display:none;flex-direction:column;
   align-items:center;justify-content:center;background:rgba(6,6,8,.95);
@@ -544,23 +545,20 @@ _MAP_LB_CSS_HEAD = """<style>
 .mlb .mcap b{color:#fff;font-weight:600;}
 .mlb .mx{position:fixed;top:8px;right:16px;color:#fff;font-size:27px;line-height:1;
   text-decoration:none;opacity:.85;}
-"""
+</style>"""
 
 
 def _map_lightbox(plotted: list[dict]) -> str:
     """Full-screen click-to-enlarge overlays injected into the map document so a
     popup photo can be viewed large. Indices match _popup_html(p, idx).
 
-    The full image is set as a `:target`-gated background-image using an
-    origin-absolute path (`/app/static/...`), so it resolves correctly from the
-    component iframe *and* is only fetched when its overlay is actually opened.
+    Each overlay carries `data-full` (the image's static path); the actual load
+    happens on open via _LightboxIntoMap, which prefixes the app's true base URL.
     """
-    rules, boxes = [], ['<span id="mtop"></span>']
+    boxes = ['<span id="mtop"></span>']
     for i, p in enumerate(plotted):
         if not p.get("full_img"):
             continue
-        url = f'/app/static/{p["full_img"]}'
-        rules.append(f'#mlb-{i}:target .pic{{background-image:url("{url}");}}')
         when = str(p.get("datetime") or p.get("date") or "").replace("T", " ")[:16]
         loc = f'{escape(when)} · {escape(p["country"])}'
         if _is_purchase(p):
@@ -575,27 +573,48 @@ def _map_lightbox(plotted: list[dict]) -> str:
             cap = (f'{d} — {loc}') if d else loc
         boxes.append(
             f'<a class="mlb" id="mlb-{i}" href="#mtop"><span class="mx">×</span>'
-            f'<span class="pic"></span><span class="mcap">{cap}</span></a>')
-    style = _MAP_LB_CSS_HEAD + "\n".join(rules) + "</style>"
-    return style + "".join(boxes)
+            f'<span class="pic" data-full="app/static/{p["full_img"]}"></span>'
+            f'<span class="mcap">{cap}</span></a>')
+    return _MAP_LB_CSS_HEAD + "".join(boxes)
 
 
 class _LightboxIntoMap(MacroElement):
-    """Move the lightbox overlays inside the Leaflet container.
+    """Wire up the in-map lightbox from inside st_folium's iframe.
 
-    The native Fullscreen API only paints the fullscreen element's subtree, so
-    overlays left on <body> disappear in fullscreen. Reparenting them into the
-    map container (the element that goes fullscreen) keeps them visible. Runs via
-    folium's script-macro, which — unlike a raw <body> <script> — executes inside
-    st_folium's iframe.
+    Runs via folium's script-macro, which — unlike a raw <body> <script> —
+    executes inside the component iframe. It does two things:
+
+    1. Reparents the overlays into the Leaflet container. The native Fullscreen
+       API only paints the fullscreen element's subtree, so overlays left on
+       <body> vanish in fullscreen; moving them into the container (the element
+       that goes fullscreen) keeps them visible.
+    2. Loads each full image on open, prefixing the app's real base URL. On
+       Streamlit Cloud the component is served from a different origin than the
+       app, so the base comes from the `streamlitUrl` param Streamlit passes into
+       the component URL (falling back to an origin-absolute path locally).
     """
     _template = Template("""
         {% macro script(this, kwargs) %}
         (function(){
           var c = {{ this._parent.get_name() }}.getContainer();
-          if(!c) return;
-          document.querySelectorAll('.mlb').forEach(function(b){ c.appendChild(b); });
-          var t = document.getElementById('mtop'); if(t) c.appendChild(t);
+          if(c){
+            document.querySelectorAll('.mlb').forEach(function(b){ c.appendChild(b); });
+            var t = document.getElementById('mtop'); if(t) c.appendChild(t);
+          }
+          var base = '/';
+          try{ base = new URLSearchParams(window.location.search).get('streamlitUrl') || '/'; }catch(e){}
+          if(base.slice(-1) !== '/') base += '/';
+          function onhash(){
+            var m = /^#mlb-(\\d+)$/.exec(window.location.hash || '');
+            if(!m) return;
+            var ov = document.getElementById('mlb-' + m[1]);
+            var pic = ov && ov.querySelector('.pic');
+            if(pic && !pic.style.backgroundImage){
+              pic.style.backgroundImage = 'url("' + base + pic.getAttribute('data-full') + '")';
+            }
+          }
+          window.addEventListener('hashchange', onhash);
+          onhash();
         })();
         {% endmacro %}
     """)
@@ -851,11 +870,11 @@ with tab_moments:
 
     if not matches:
         st.markdown("""
-<div class="note"><div class="note-title">Run the vision step to fill this in</div>
-<p>Each geotagged photo gets sent to Claude with that day's purchases, and the
-model links the photo to the exact item it shows — a matcha-ice-cream photo to
-the matcha-ice-cream line. Set <b>ANTHROPIC_API_KEY</b> and run
-<b>python build_dataset.py --vision-only</b>, then refresh.</p></div>
+<div class="note"><div class="note-title">No photo→purchase matches yet</div>
+<p>Photos are matched to purchases by hand in <b>data/matches.csv</b> — each row
+links a photo to the exact item it shows (a matcha-ice-cream photo to the
+matcha-ice-cream line). Add matches there and run
+<b>python build_dataset.py</b>, then refresh.</p></div>
 """, unsafe_allow_html=True)
     else:
         st.caption(f"{len(matches)} photos matched to the exact purchase they "

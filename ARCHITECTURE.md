@@ -63,7 +63,7 @@ the derived files (300 px thumbnails + parsed tables), so the project is both
 | `timeline.py` | Parse the Google Timeline JSON → an ordered list of GPS points (the movement route). |
 | `photos.py` | Read each photo's **EXIF** GPS + timestamp, tag it to a country by bounding box, and build a 300 px thumbnail. GPS-less photos are skipped. |
 | `landmarks.py` | Keep only curated landmarks the trip data actually passes near (validated by **haversine** distance) and count nearby photos. |
-| `vision.py` | *Optional* automated photo→purchase matcher via the Claude vision API (the free hand-curated matches are used instead). |
+| `vision.py` | *Experimental, unused in the published build.* An optional Claude-vision photo→purchase matcher; every published match is instead **hand-curated** in `data/matches.csv`. |
 
 Output → `data/processed/` (committed):
 

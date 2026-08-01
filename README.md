@@ -80,9 +80,10 @@ data/raw/  ──►  build_dataset.py  ──►  data/processed/  ──►  a
 3. **Model** — everything is converted to a common schema and a common currency
    (USD, at fixed trip rates), photos are reverse-geocoded to a country by
    bounding box, and Timeline segments are flattened into an ordered route.
-4. **Enrich** — standout photos are matched to the exact purchase they show
-   (a curated, documented set in `data/matches.csv`; an automated **Claude
-   vision** pipeline in `pipeline/vision.py` can scale it to every photo).
+4. **Enrich** — standout photos are matched **by hand** to the exact purchase
+   they show — a curated, documented, reproducible set in `data/matches.csv`.
+   (An experimental Claude-vision matcher lives in `pipeline/vision.py`, but
+   every published match was made and verified manually.)
 5. **Analyze & visualize** — findings and charts are computed with pandas and
    rendered with Plotly + Folium.
 
@@ -100,7 +101,9 @@ data/raw/  ──►  build_dataset.py  ──►  data/processed/  ──►  a
   single orchestrator, separating raw sources from committed, deploy-safe outputs.
 - **Geospatial analysis** — EXIF GPS extraction, bounding-box classification,
   route reconstruction, proximity validation of landmarks (haversine).
-- **LLM-assisted enrichment** with structured outputs (image → structured match).
+- **Human-in-the-loop curation** — hand-matching photos to purchases through a
+  documented, reproducible file layered over an immutable raw source, the way an
+  analyst reconciles records they don't own.
 - **Dashboarding & data storytelling** — a responsive, insight-first UI.
 - **Reproducibility & data hygiene** — deterministic build, personal raw data
   kept out of version control.
@@ -110,7 +113,11 @@ data/raw/  ──►  build_dataset.py  ──►  data/processed/  ──►  a
 ## Tech stack
 
 Python · pandas · Pillow + pillow-heif (HEIC EXIF) · Folium + streamlit-folium ·
-Plotly · Streamlit · Anthropic Claude (vision).
+Plotly · Streamlit.
+
+*(An optional, experimental Claude-vision photo matcher is included in the code
+(`pipeline/vision.py`) but was **not** used for the published dataset — the
+photo→purchase matches are all hand-curated.)*
 
 ---
 
@@ -126,17 +133,14 @@ streamlit run app.py            # uses the committed data/processed/ dataset
 ### Rebuild the dataset from raw sources
 
 ```bash
-python build_dataset.py               # parse + extract; vision runs if a key is set
-python build_dataset.py --no-vision   # skip the Claude vision matching
-python build_dataset.py --vision-only # re-run only the photo → purchase matching
+python build_dataset.py               # parse, extract, apply hand-curated matches
+python build_dataset.py --no-vision   # same, explicitly skipping the vision matcher
 ```
 
-The vision step needs an Anthropic API key:
-
-```powershell
-$env:ANTHROPIC_API_KEY = "sk-ant-..."
-python build_dataset.py --vision-only
-```
+The published photo→purchase matches are **hand-curated** in `data/matches.csv`
+(no API key or cost). The experimental Claude-vision matcher is optional and was
+not used for the published data; if you want to try it, set an API key and run
+`python build_dataset.py --vision-only`.
 
 ---
 
