@@ -17,6 +17,10 @@ analysis and an interactive dashboard.**
 > ⏳ **Free-hosted demo.** If the link shows a "this app is asleep" screen, just
 > click **"Yes, get this app back up!"** and give it ~30 seconds to wake — that's
 > normal for Streamlit's free tier, not a problem with the app.
+>
+> 🗺️ **The map tab can take a little longer to load fully** right after a cold
+> start (it has a lot of photos to place). If it looks incomplete, give it a
+> moment and **refresh the page** — that usually sorts it out.
 
 ---
 
