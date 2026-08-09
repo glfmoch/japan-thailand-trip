@@ -8,9 +8,15 @@ analysis and an interactive dashboard.**
 > treat it like an analytics problem: collect, clean, model, visualize, and
 > surface insights. Built end-to-end in Python.
 
-![Streamlit](https://img.shields.io/badge/Streamlit-dashboard-ff4b4b)
+[![Live app](https://img.shields.io/badge/▶_Live_dashboard-japanthailandtrip.streamlit.app-ff4b4b)](https://japanthailandtrip.streamlit.app/)
 ![Python](https://img.shields.io/badge/Python-pandas-3776ab)
 ![Status](https://img.shields.io/badge/data-real%20trip-2dd4bf)
+
+### ▶ [Open the live dashboard](https://japanthailandtrip.streamlit.app/)
+
+> ⏳ **Free-hosted demo.** If the link shows a "this app is asleep" screen, just
+> click **"Yes, get this app back up!"** and give it ~30 seconds to wake — that's
+> normal for Streamlit's free tier, not a problem with the app.
 
 ---
 
