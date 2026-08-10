@@ -35,10 +35,10 @@ and can I reconstruct the trip from the digital trail it left behind?*
 
 - **Getting there cost more than being there.** Two long-haul US↔Asia flights
   plus the Japan→Thailand connector totalled **~$2,286** — roughly **2.3× the
-  ~$998 spent on the ground** across three weeks. The flights, not daily life,
-  were the trip's real expense (all-in cost **~$3,283**).
-- **On the ground, the two legs cost about the same per day** — **~$36/day in
-  Japan** vs **~$34/day in Thailand** — once airfare is separated out as a travel
+  ~$1,014 spent on the ground** across three weeks. The flights, not daily life,
+  were the trip's real expense (all-in cost **~$3,300**).
+- **On the ground, the two legs cost about the same per day** — **~$37/day in
+  Japan** vs **~$35/day in Thailand** — once airfare is separated out as a travel
   cost. The dramatic gap in raw totals was almost entirely airfare.
 - **Food & Drink dominated** on-the-ground spending, the single largest category
   by a wide margin — a day-to-day trip, not a big-ticket one.

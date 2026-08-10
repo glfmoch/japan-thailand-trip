@@ -314,11 +314,19 @@ work = spend[spend.category != "Flights"]
 grand_total = float(spend.amount_usd.sum())   # whole-trip cost (always incl. flight)
 jp_total = float(work.loc[work.country == "Japan", "amount_usd"].sum())
 th_total = float(work.loc[work.country == "Thailand", "amount_usd"].sum())
+tw_total = float(work.loc[work.country == "Taiwan", "amount_usd"].sum())
 total = float(work.amount_usd.sum())
 daily = work.groupby(work["date"].dt.date)["amount_usd"].sum()
 jp_days = work.loc[work.country == "Japan", "date"].dt.date.nunique()
 th_days = work.loc[work.country == "Thailand", "date"].dt.date.nunique()
 matched = sum(1 for p in photos if p.get("matched_spend_id"))
+
+
+def usd0(x: float) -> str:
+    """Whole-dollar USD with round-half-up on exact cents, so the headline
+    figures reconcile on screen. (Plain %.0f uses float/banker's rounding, which
+    renders 3299.50 as "3,299" even though its rounded parts sum to 3,300.)"""
+    return f"${(int(round(x * 100)) + 50) // 100:,}"
 
 
 def _count(pattern: str) -> int:
@@ -410,7 +418,7 @@ st.markdown(f"""
   location history, a hand-kept spending log, and {len(photos)} geotagged
   photos — with standout shots matched to the exact purchase they capture.</p>
   <div class="chips">
-    <span class="chip"><b>${grand_total:,.0f}</b> all-in cost</span>
+    <span class="chip"><b>{usd0(grand_total)}</b> all-in cost</span>
     <span class="chip"><b>{len(photos)}</b> geotagged photos</span>
     <span class="chip"><b>{len(landmarks)}</b> landmarks</span>
     <span class="chip"><b>2</b> countries · {span_days} days</span>
@@ -732,15 +740,17 @@ with tab_spend:
     st.markdown("".join(fh), unsafe_allow_html=True)
 
     kpi_grid([
-        ("On the ground", f"${total:,.0f}", "food, transport, shopping, stays", GOLD),
-        ("Japan", f"${jp_total:,.0f}", f"${jp_total/jp_days:,.0f}/day · {jp_days} days", JP),
-        ("Thailand", f"${th_total:,.0f}", f"${th_total/th_days:,.0f}/day · {th_days} days", TH),
-        ("Airfare", f"${airfare_total:,.0f}", "2 long-haul + Japan→Thailand", "#c084fc"),
-        ("All-in trip cost", f"${grand_total:,.0f}", "on the ground + airfare", "#7aa2ff"),
+        ("On the ground", usd0(total), "Japan + Thailand + Taiwan", GOLD),
+        ("Japan", usd0(jp_total), f"${jp_total/jp_days:,.0f}/day · {jp_days} days", JP),
+        ("Thailand", usd0(th_total), f"${th_total/th_days:,.0f}/day · {th_days} days", TH),
+        ("Taiwan", usd0(tw_total), "airport layover home", TW),
+        ("Airfare", usd0(airfare_total), "2 long-haul + Japan→Thailand", "#c084fc"),
+        ("All-in trip cost", usd0(grand_total), "on the ground + airfare", "#7aa2ff"),
     ])
-    st.caption("Airfare is a separate travel cost and is **excluded** from the "
-               "per-day and per-category charts below, which cover on-the-ground "
-               "spending only.")
+    st.caption("Cards reconcile: Japan + Thailand + Taiwan = **on the ground**, and "
+               "on the ground + airfare = **all-in**. Airfare is a separate travel "
+               "cost and is **excluded** from the per-day and per-category charts "
+               "below, which cover on-the-ground spending only.")
 
     # ── The journey: an annotated daily-spend timeline (the narrative) ────────
     st.markdown('<div class="sec">The journey, day by day</div>',
