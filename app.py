@@ -640,10 +640,12 @@ def _basemap() -> folium.TileLayer:
     if key:
         return folium.TileLayer(
             tiles=f"https://basemaps.cartocdn.com/rastertiles/dark_all/{{z}}/{{x}}/{{y}}.png?key={key}",
-            attr=_ATTR, name="Dark", control=False)
+            attr=_ATTR, name="Dark", control=False, max_zoom=19)
     return folium.TileLayer(
         tiles="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
-        attr="Tiles &copy; Esri", name="Dark", control=False)
+        attr="Tiles &copy; Esri", name="Dark", control=False,
+        max_native_zoom=16, max_zoom=19)
+    
 
 def build_map(mode: str = "all") -> folium.Map:
     plotted = [p for p in photos if p["country"] in ("Japan", "Thailand", "Taiwan")]
