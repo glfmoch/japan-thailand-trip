@@ -175,4 +175,4 @@ served as static files.
 ---
 
 *Built by **Ryan Mathew** — Data Visualization, University of Washington Bothell.
-Aspiring data analyst. [Add your LinkedIn here].*
+Aspiring data analyst. https://www.linkedin.com/in/ryan-mathew280/.*
