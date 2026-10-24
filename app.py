@@ -627,6 +627,23 @@ class _LightboxIntoMap(MacroElement):
         {% endmacro %}
     """)
 
+_ATTR = ('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
+         'contributors &copy; <a href="https://carto.com/attributions">CARTO</a>')
+
+
+def _basemap() -> folium.TileLayer:
+    """Dark basemap: CARTO with an API key if configured, else keyless Esri."""
+    try:
+        key = st.secrets["CARTO_KEY"]
+    except Exception:          # no secrets file / key not set
+        key = ""
+    if key:
+        return folium.TileLayer(
+            tiles=f"https://basemaps.cartocdn.com/rastertiles/dark_all/{{z}}/{{x}}/{{y}}.png?key={key}",
+            attr=_ATTR, name="Dark", control=False)
+    return folium.TileLayer(
+        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+        attr="Tiles &copy; Esri", name="Dark", control=False)
 
 def build_map(mode: str = "all") -> folium.Map:
     plotted = [p for p in photos if p["country"] in ("Japan", "Thailand", "Taiwan")]
@@ -641,8 +658,8 @@ def build_map(mode: str = "all") -> folium.Map:
     else:
         center = [15.87, 100.99]
 
-    fmap = folium.Map(location=center, zoom_start=5, tiles="CartoDB dark_matter",
-                      control_scale=True)
+    fmap = folium.Map(location=center, zoom_start=5, tiles=None, control_scale=True)
+    _basemap().add_to(fmap)
     Fullscreen(title="Fullscreen", title_cancel="Exit").add_to(fmap)
 
     th_route = route.get("routes", {}).get("Thailand", [])
