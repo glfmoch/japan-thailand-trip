@@ -6,7 +6,7 @@ analysis and an interactive dashboard.**
 
 > A summer portfolio project exploring what I can learn about my own trip when I
 > treat it like an analytics problem: collect, clean, model, visualize, and
-> surface insights. Built end-to-end in Python.
+> surface insights. Built end-to-end in Python with the assistance of Claude Code.
 
 [![Live app](https://img.shields.io/badge/▶_Live_dashboard-japanthailandtrip.streamlit.app-ff4b4b)](https://japanthailandtrip.streamlit.app/)
 ![Python](https://img.shields.io/badge/Python-pandas-3776ab)
@@ -107,6 +107,10 @@ data/raw/  ──►  build_dataset.py  ──►  data/processed/  ──►  a
 - **Data cleaning / wrangling** of unstructured, real-world text (multi-currency,
   free-form, inconsistent) — the messiest and most representative part of analyst
   work.
+- **Directing and validating AI-generated code** — built much of the pipeline and
+  dashboard with Claude Code, then verified results against the raw data, wrote
+  the corrections layer for known data-entry errors, and hand-curated the
+  photo-to-purchase matches rather than trusting automated output.
 - **ETL pipeline design** — a modular, re-runnable `pipeline/` package with a
   single orchestrator, separating raw sources from committed, deploy-safe outputs.
 - **Geospatial analysis** — EXIF GPS extraction, bounding-box classification,
@@ -123,7 +127,7 @@ data/raw/  ──►  build_dataset.py  ──►  data/processed/  ──►  a
 ## Tech stack
 
 Python · pandas · Pillow + pillow-heif (HEIC EXIF) · Folium + streamlit-folium ·
-Plotly · Streamlit.
+Plotly · Streamlit · Claude Code (development assistant).
 
 *(An optional, experimental Claude-vision photo matcher is included in the code
 (`pipeline/vision.py`) but was **not** used for the published dataset — the
