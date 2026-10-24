@@ -102,6 +102,29 @@ data/raw/  ──►  build_dataset.py  ──►  data/processed/  ──►  a
 
 ---
 
+## Challenges & how I handled them
+
+- **No SIM card in Japan, so no movement route.** Google Maps Timeline
+  recorded almost nothing there, while Thailand (local eSIM) has a full
+  route. Instead of faking a path, I rebuilt the Japan leg from photo EXIF
+  GPS and added a note on the Map tab explaining the difference.
+- **A spending log never meant for analysis.** Four currencies, inconsistent
+  dates, missing currency markers, and an ATM withdrawal whose *fee* was the
+  real cost. I handled it with a parser plus a documented corrections layer,
+  leaving the raw file untouched.
+- **Airfare skewed the story.** Flights made Japan look far pricier per day
+  than Thailand, so I separated airfare as a travel cost. That became one of
+  the main findings.
+- **Totals that didn't add up.** Python's banker's rounding made a $3,299.50
+  total show as $3,299 while its parts summed to $3,300. I wrote a
+  round-half-up formatter so the figures reconcile on screen.
+- **A dependency changed after launch.** My basemap provider (CARTO) began
+  requiring an API key and watermarked every tile. I added a fallback so the
+  map uses a keyed CARTO layer when a key is set and a keyless layer
+  otherwise, with the key kept in secrets.
+
+---
+
 ## Skills demonstrated
 
 - **Data cleaning / wrangling** of unstructured, real-world text (multi-currency,
@@ -110,7 +133,7 @@ data/raw/  ──►  build_dataset.py  ──►  data/processed/  ──►  a
 - **Directing and validating AI-generated code** — built much of the pipeline and
   dashboard with Claude Code, then verified results against the raw data, wrote
   the corrections layer for known data-entry errors, and hand-curated the
-  photo-to-purchase matches rather than trusting automated output.
+  photo-to-purchase matches rather than trusting iffy automated output.
 - **ETL pipeline design** — a modular, re-runnable `pipeline/` package with a
   single orchestrator, separating raw sources from committed, deploy-safe outputs.
 - **Geospatial analysis** — EXIF GPS extraction, bounding-box classification,
